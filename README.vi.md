@@ -6,10 +6,10 @@ MaKe PACKage in one musical note - đóng gói trong một nốt nhạc
 ### Yêu cầu
 
 Các gói cần được cài đặt trước:
-	..* coreutils (md5sum, dirname)
-	..* binutils (ar)
-	..* sed
-	..* awk
+	* coreutils (md5sum, dirname)
+	* binutils (ar)
+	* sed
+	* awk
 
 ### Tính năng
 
@@ -67,7 +67,7 @@ Các gói cần được cài đặt trước:
 	Setting up mkpack (0.9-1) ...
 	Finish installation mkpack
 	Enjoy.
-	[root@ldap2-sandbox2v.dev:~/mkpack]# dpkg -l | grep mkpack
+	[root@lab1.wikilinux.vn:~/mkpack]# dpkg -l | grep mkpack
 	ii  mkpack              0.9-1               mkpack - MaKe PACKage in one musical note
-	[root@ldap2-sandbox2v.dev:~/mkpack]#
+	[root@lab1.wikilinux.vn:~/mkpack]#
 ```

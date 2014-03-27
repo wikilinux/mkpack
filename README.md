@@ -6,10 +6,10 @@ MaKe PACKage in one musical note
 ### Requirement
 
 It require pre-installed these tools:
-	..* coreutils (md5sum, dirname)
-	..* binutils (ar)
-	..* sed
-	..* awk
+	* coreutils (md5sum, dirname)
+	* binutils (ar)
+	* sed
+	* awk
 
 ### Features
 
@@ -67,7 +67,7 @@ It require pre-installed these tools:
 	Setting up mkpack (0.9-1) ...
 	Finish installation mkpack
 	Enjoy.
-	[root@ldap2-sandbox2v.dev:~/mkpack]# dpkg -l | grep mkpack
+	[root@lab1.wikilinux.vn:~/mkpack]# dpkg -l | grep mkpack
 	ii  mkpack              0.9-1               mkpack - MaKe PACKage in one musical note
-	[root@ldap2-sandbox2v.dev:~/mkpack]#
+	[root@lab1.wikilinux.vn:~/mkpack]#
 ```
