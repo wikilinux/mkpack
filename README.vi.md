@@ -1,32 +1,32 @@
 mkpack
 ======
 
-MaKe PACKage in one musical note
+MaKe PACKage in one musical note - đóng gói trong một nốt nhạc
 
-### Requirement
+### Yêu cầu
 
-It require pre-installed these tools:
+Các gói cần được cài đặt trước:
 	..* coreutils (md5sum, dirname)
 	..* binutils (ar)
 	..* sed
 	..* awk
 
-### Features
+### Tính năng
 
-* mkdeb - make package .deb for debian/ubuntu and any debian-based
+* mkdeb - tạo gói cài đặt .deb cho debian/ubuntu và tất cả các phiên bản dựa trên debian
 
-### Usage
+### Sử dụng
 
 ```bash
-	mkdeb path_to_project
+	mkdeb đường_dẫn_đến_thư_mục_cần_tạo_gói
 
-	Example:
+	Ví dụ:
 		mkdeb /home/wikilinux/deb/mkpack
 ```
 
-### Example
+### Ví dụ
 
-* Create .deb package
+* Tạo gói .deb
 
 ```bash
 	[root@lab1.wikilinux.vn:~]# cd mkpack/
@@ -38,7 +38,7 @@ It require pre-installed these tools:
 	Package is created at example/mkpack_0.9-1_all.deb
 ```
 
-* Check and install package
+* Kiểm tra và cài đặt gói được tạo
 
 ```bash
 	[root@lab1.wikilinux.vn:~/mkpack]# dpkg --info example/mkpack_0.9-1_all.deb

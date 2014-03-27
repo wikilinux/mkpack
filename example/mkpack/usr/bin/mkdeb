@@ -1,0 +1,69 @@
+#!/bin/bash
+## mkdeb is a tool make package .deb for debian/ubuntu
+## --------------------------------------------------------------------------
+## Copyright (c) 2014 Wiklinux project <http://wikilinux.vn>
+## This tool is licensed under GNU GPL version 2.0
+## Written by: Xuta Le <xuta.le@wikilinux.vn>
+## --------------------------------------------------------------------------
+## Initial:	Mar 27 2014
+## --------------------------------------------------------------------------
+
+function usage() {
+	cat <<EOF
+Usage: mkdeb path_to_project
+
+Example:
+	mkdeb /home/wikilinux/deb/mkpack
+EOF
+}
+
+[ $# -ne 1 ] && usage && exit 10
+[ "$1" == "-h" ] || [ "$1" == "--help" ] && usage && exit 11
+[ ! -d "$1" ] && echo "Error: directory '$1' isn't exist" && usage && exit 12
+
+cd $1
+## check control file, require 'Package' and 'Version'
+[ ! -f control ] && echo "Err: not found control file in project." && exit 20
+grep -q "^Package:" control
+[ $? -ne 0 ] && echo "Err: not found 'Package' field in control file." && exit 21
+grep -q "^Version:" control
+[ $? -ne 0 ] && echo "Err: not found 'Version' field in control file." && exit 22
+
+## get information from control file
+PKG_NAME=`grep "Package:" control | awk '{print $2}'`
+PKG_VERSION=`grep "Version:" control | awk '{print $2}'`
+PKG_ARCH='all'
+grep -q "^Architecture:" control
+[ $? -eq 0 ] && PKG_ARCH=`grep "Architecture:" control | awk '{print $2}'`
+
+### Pack control.tar.gz part
+## create md5sums file
+find -mindepth 2 -type f | sed "s#./##" | xargs md5sum > md5sums
+## make sure installation scripts have executable permission
+for i in postinst postrm preinst prerm
+do
+	[ -f "$i" ] && chmod +x $i
+done
+## control.tar.gz
+tar -zcf control.tar.gz `find -maxdepth 1 -type f`
+
+### Pack data.tar.gz part
+tar -zcf data.tar.gz `find -mindepth 1 -maxdepth 1 -type d`
+
+### Create debian-binary file
+echo "2.0" > debian-binary
+
+#### Make .deb file
+ar cr ../${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb debian-binary data.tar.gz control.tar.gz
+if [ $? -eq 0 ]
+then
+	echo "Package is created at `dirname $1`/${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb"
+else
+	deb_path=`dirname $1`/${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb
+	[ -f $deb_path ] && rm -f $deb_path
+	echo "Fail: Let's run script in debug mode to find problems"
+	echo "	bash -xv mkdeb $1"
+fi
+
+## clean all temporary files
+rm -f md5sums debian-binary data.tar.gz control.tar.gz

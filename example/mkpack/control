@@ -1,0 +1,9 @@
+Package: mkpack
+Version: 0.9-1
+Architecture: all
+Maintainer: Xuta Le <xuta.le@wikilinux.vn>
+Depends: coreutils, binutils, sed, mawk | gawk
+Section: devel
+Priority: standard
+Description: mkpack - MaKe PACKage in one musical note
+ Home page: http://wikilinux.vn
