@@ -3,6 +3,13 @@ mkpack
 
 MaKe PACKage in one musical note
 
+### How it works
+
+* mkdeb
+	* it reads control file to parse package name, package version and architecture.
+	* auto detect installation scripts (postinst, postrm, preinst, prerm), control file and conffile
+	* auto detect data file structure
+
 ### Requirement
 
 It require pre-installed these tools:
