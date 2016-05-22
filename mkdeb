@@ -54,7 +54,7 @@ tar -zcf data.tar.gz `find -mindepth 1 -maxdepth 1 -type d`
 echo "2.0" > debian-binary
 
 #### Make .deb file
-ar cr ../${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb debian-binary data.tar.gz control.tar.gz
+ar cr ../${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb debian-binary control.tar.gz data.tar.gz
 if [ $? -eq 0 ]
 then
 	echo "Package is created at `dirname $1`/${PKG_NAME}_${PKG_VERSION}_${PKG_ARCH}.deb"
